@@ -1,0 +1,19 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: resource-feign-service
+
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 10.20.1.179:8848
+        file-extension: yml
+        refresh: true
+        shared-dataids: application-data-hikari-p6spy.yml
+        namespace: 83625376-d520-4e08-9c52-35a34cbb63fc
+      # 注册中心
+      discovery:
+        server-addr: 10.20.1.179:8848

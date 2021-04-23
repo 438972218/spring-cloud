@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdcplus.resource.basic.mapper.CabinetMonitorMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xdcplus.resource.basic.entity.CabinetMonitor">
+        <id column="id" property="id" />
+        <result column="cabinet_id" property="cabinetId" />
+        <result column="item_id" property="itemId" />
+        <result column="item_code" property="itemCode" />
+        <result column="item_name" property="itemName" />
+        <result column="circuit" property="circuit" />
+        <result column="pdc_number" property="pdcNumber" />
+        <result column="oid_name" property="oidName" />
+        <result column="oid" property="oid" />
+        <result column="oid_type" property="oidType" />
+        <result column="oid_description" property="oidDescription" />
+        <result column="alarm_max_value" property="alarmMaxValue" />
+        <result column="alarm_min_value" property="alarmMinValue" />
+        <result column="alarm_max_value_to_customer" property="alarmMaxValueToCustomer" />
+        <result column="alarm_min_value_to_customer" property="alarmMinValueToCustomer" />
+        <result column="unit" property="unit" />
+        <result column="panel_code" property="panelCode" />
+        <result column="classify" property="classify" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, cabinet_id, item_id, item_code, item_name, circuit, pdc_number, oid_name, oid, oid_type, oid_description, alarm_max_value, alarm_min_value, alarm_max_value_to_customer, alarm_min_value_to_customer, unit, panel_code, classify, create_time
+    </sql>
+    <resultMap id="HistoryDTOResultMap" type="com.xdcplus.model.dto.cabinetel.HistoryDTO">
+        <result column="cabinet_id" jdbcType="INTEGER" property="cabinetId" />
+        <result column="item_id" jdbcType="BIGINT" property="itemId" />
+    </resultMap>
+    <select id="selectHistoryDTO" resultMap="HistoryDTOResultMap">
+        select cm.cabinet_id,cm.item_id
+        from cabinet_monitor cm
+        <where>
+            <if test="monitorClassify !=null">
+                and cm.classify =#{monitorClassify}
+            </if>
+            <if test="itemName !=null">
+                and cm.item_name like #{itemName}
+            </if>
+        </where>
+    </select>
+</mapper>

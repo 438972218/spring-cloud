@@ -1,0 +1,94 @@
+#server:
+#  port: 8098
+server:
+#  port: 8098
+  servlet:
+    context-path: /customerorder
+
+spring:
+  application:
+    name: customerorder-service
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 10.20.1.179:8848
+        file-extension: yml
+        refresh: true
+        shared-dataids: application-spring-cloud.yml,
+                        application-mysql-resource-plus.yml,
+                        application-druid.yml,
+                        application-dubbo.yml,
+                        application-mybatis-plus.yml
+        namespace: 83625376-d520-4e08-9c52-35a34cbb63fc
+
+  autoconfigure:
+    exclude: com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceAutoConfigure
+
+#  datasource:
+#    dynamic:
+#      druid:
+#        filters: stat
+#      primary: processplus
+#      datasource:
+#        processplus:
+#          username: root
+#          password: xdcplus.com
+#          url: jdbc:mysql://10.20.1.130:3306/processplus?serverTimezone=Asia/Shanghai
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          #schema: db/schema.sql
+#          druid: #\u8FD9\u91CC\u53EF\u4EE5\u91CD\u5199\u9ED8\u8BA4\u503C
+#            initial-size: 5
+#        resource:
+#          username: root
+#          password: xdcplus.com
+#          url: jdbc:mysql://10.20.1.130:3306/resource?serverTimezone=Asia/Shanghai
+#          driver-class-name: com.mysql.cj.jdbc.Driver
+#          druid:
+#            initial-size: 6
+
+dubbo:
+  scan:
+    base-packages: com.xdcplus.customerorder.basic.service.impl
+  cloud:
+    subscribed-services:
+  provider:
+    timeout: 30000
+  consumer:
+    timeout: 30000
+
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
+
+#logging:
+#  config: classpath:logback-spring.xml
+
+seata:
+  enabled: true
+  enable-auto-data-source-proxy: true
+  tx-service-group: my_test_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 10.20.1.179:8848
+      namespace: 4b9686c0-c747-4c80-9fa1-e688cf4806b3
+  config:
+    type: nacos
+    nacos:
+      server-addr: 10.20.1.179:8848
+      group: SEATA_GROUP
+      namespace: 4b9686c0-c747-4c80-9fa1-e688cf4806b3
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    disable-global-transaction: false
+  client:
+    rm:
+      report-success-enable: false
+
+demo:
+  isopen: true
+  str1: hello
+  str2: 111

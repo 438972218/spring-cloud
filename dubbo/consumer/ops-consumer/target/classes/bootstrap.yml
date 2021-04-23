@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: ops-consumer
+  main:
+    allow-bean-definition-overriding: true
+---
+spring:
+  profiles: nacos
+
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 10.20.7.145:8848
+        file-extension: yml
+        shared-dataids: ops-consumer.yml
+        namespace: 86ea942f-9c0b-49f7-b749-19ab993bac21
+
+      # 注册中心
+      discovery:
+        enabled: true
+        register-enabled: true
+        server-addr: 10.20.7.145:8848
+        namespace: b9cc4a43-912d-4350-9b8b-63d7d7c1dc92
+

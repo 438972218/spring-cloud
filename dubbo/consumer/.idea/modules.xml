@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/consumer.iml" filepath="$PROJECT_DIR$/.idea/consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customerorder-consumer/customerorder-consumer.iml" filepath="$PROJECT_DIR$/customerorder-consumer/customerorder-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ops-consumer/ops-consumer.iml" filepath="$PROJECT_DIR$/ops-consumer/ops-consumer.iml" />
+      <module fileurl="file://$PROJECT_DIR$/resource-consumer/resource-consumer.iml" filepath="$PROJECT_DIR$/resource-consumer/resource-consumer.iml" />
+    </modules>
+  </component>
+</project>

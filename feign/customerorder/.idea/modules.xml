@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/customerorder.iml" filepath="$PROJECT_DIR$/customerorder.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customerorder-feign/customerorder-feign.iml" filepath="$PROJECT_DIR$/customerorder-feign/customerorder-feign.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customerorder-gateway/customerorder-gateway.iml" filepath="$PROJECT_DIR$/customerorder-gateway/customerorder-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customerorder-service/customerorder-service.iml" filepath="$PROJECT_DIR$/customerorder-service/customerorder-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring-boot-admin/spring-boot-admin.iml" filepath="$PROJECT_DIR$/spring-boot-admin/spring-boot-admin.iml" />
+    </modules>
+  </component>
+</project>

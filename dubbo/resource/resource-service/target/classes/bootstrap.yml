@@ -1,0 +1,60 @@
+server:
+  port: 8096
+  servlet:
+    context-path: /resource
+
+spring:
+  application:
+    name: resource-service
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 10.20.1.179:8848
+        file-extension: yml
+        refresh: true
+        shared-dataids: application-spring-cloud.yml,
+                        application-mysql-resource.yml,
+                        application-druid.yml,
+                        application-dubbo.yml,
+                        application-mybatis-plus.yml
+        namespace: 83625376-d520-4e08-9c52-35a34cbb63fc
+
+dubbo:
+  scan:
+    base-packages: com.xdcplus.resource.basic.service.impl
+  cloud:
+    subscribed-services: "customerorder-service"
+  provider:
+    timeout: 30000
+  consumer:
+    timeout: 30000
+
+logging:
+  level:
+    com.alibaba.nacos.client.config.impl: WARN
+#  config: classpath:logback-spring.xml
+
+seata:
+  enabled: true
+  enable-auto-data-source-proxy: true
+  tx-service-group: my_test_tx_group
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 10.20.1.179:8848
+      namespace: 4b9686c0-c747-4c80-9fa1-e688cf4806b3
+  config:
+    type: nacos
+    nacos:
+      server-addr: 10.20.1.179:8848
+      group: SEATA_GROUP
+      namespace: 4b9686c0-c747-4c80-9fa1-e688cf4806b3
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    disable-global-transaction: false
+  client:
+    rm:
+      report-success-enable: false

@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdcplus.resource.basic.mapper.CabinetMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xdcplus.resource.basic.entity.Cabinet">
+        <id column="id" property="id" />
+        <result column="customer_id" property="customerId" />
+        <result column="final_customer_id" property="finalCustomerId" />
+        <result column="zone_id" property="zoneId" />
+        <result column="number" property="number" />
+        <result column="mark" property="mark" />
+        <result column="charge_type_id" property="chargeTypeId" />
+        <result column="estimate_charge_date_from" property="estimateChargeDateFrom" />
+        <result column="charge_date_from" property="chargeDateFrom" />
+        <result column="charge_date_to" property="chargeDateTo" />
+        <result column="power_on_time" property="powerOnTime" />
+        <result column="power_down_time" property="powerDownTime" />
+        <result column="charge_value" property="chargeValue" />
+        <result column="price" property="price" />
+        <result column="specific_price" property="specificPrice" />
+        <result column="overcurrent_price" property="overcurrentPrice" />
+        <result column="price_terms_id" property="priceTermsId" />
+        <result column="payment_terms_id" property="paymentTermsId" />
+        <result column="cost_nrc" property="costNrc" />
+        <result column="cost_price" property="costPrice" />
+        <result column="device_model_id" property="deviceModelId" />
+        <result column="serial_number" property="serialNumber" />
+        <result column="asset_tag" property="assetTag" />
+        <result column="facility_number" property="facilityNumber" />
+        <result column="nominal_watts" property="nominalWatts" />
+        <result column="delivery_date" property="deliveryDate" />
+        <result column="pdu_type_name" property="pduTypeName" />
+        <result column="pdu_brand" property="pduBrand" />
+        <result column="pdu_power_type_name" property="pduPowerTypeName" />
+        <result column="pdu_power_number" property="pduPowerNumber" />
+        <result column="width" property="width" />
+        <result column="height" property="height" />
+        <result column="depth" property="depth" />
+        <result column="plan_device_number" property="planDeviceNumber" />
+        <result column="x_axis" property="xAxis" />
+        <result column="y_axis" property="yAxis" />
+        <result column="alarm_max_value" property="alarmMaxValue" />
+        <result column="alarm_min_value" property="alarmMinValue" />
+        <result column="alarm_max_value_to_customer" property="alarmMaxValueToCustomer" />
+        <result column="alarm_min_value_to_customer" property="alarmMinValueToCustomer" />
+        <result column="unit" property="unit" />
+        <result column="parent_id" property="parentId" />
+        <result column="create_by_id" property="createById" />
+        <result column="update_by_id" property="updateById" />
+        <result column="update_time" property="updateTime" />
+        <result column="create_time" property="createTime" />
+    </resultMap>
+    <resultMap id="keywordResultMap" type="com.xdcplus.resource.basic.vo.CabinetByKeywordVO">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="zone_id" jdbcType="INTEGER" property="zoneId" />
+        <result column="number" jdbcType="VARCHAR" property="number" />
+        <result column="device_model_id" jdbcType="INTEGER" property="deviceModelId" />
+        <result column="serial_number" jdbcType="VARCHAR" property="serialNumber" />
+        <result column="asset_tag" jdbcType="VARCHAR" property="assetTag" />
+        <result column="facility_number" jdbcType="VARCHAR" property="facilityNumber" />
+        <result column="nominal_watts" jdbcType="REAL" property="nominalWatts" />
+        <result column="delivery_date" jdbcType="DATE" property="deliveryDate" />
+        <result column="power_on_time" jdbcType="DATE" property="powerOnTime" />
+        <result column="power_down_time" jdbcType="DATE" property="powerDownTime" />
+        <result column="charge_date_from" jdbcType="DATE" property="chargeDateFrom" />
+        <result column="charge_date_to" jdbcType="DATE" property="chargeDateTo" />
+        <result column="estimate_charge_date_from" jdbcType="DATE" property="estimateChargeDateFrom"/>
+        <result column="pdu_type_name" jdbcType="VARCHAR" property="pduTypeName" />
+        <result column="pdu_brand" jdbcType="VARCHAR" property="pduBrand" />
+        <result column="pdu_power_type_name" jdbcType="VARCHAR" property="pduPowerTypeName" />
+        <result column="pdu_power_number" jdbcType="TINYINT" property="pduPowerNumber" />
+        <result column="width" jdbcType="INTEGER" property="width" />
+        <result column="height" jdbcType="INTEGER" property="height" />
+        <result column="depth" jdbcType="INTEGER" property="depth" />
+        <result column="plan_device_number" jdbcType="TINYINT" property="planDeviceNumber" />
+        <result column="x_axis" jdbcType="REAL" property="xAxis" />
+        <result column="y_axis" jdbcType="REAL" property="yAxis" />
+        <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+        <result column="final_customer_id" jdbcType="INTEGER" property="finalCustomerId" />
+        <result column="charge_type_id" jdbcType="INTEGER" property="chargeTypeId" />
+        <result column="charge_value" jdbcType="REAL" property="chargeValue" />
+        <result column="price" jdbcType="REAL" property="price" />
+        <result column="specific_price" jdbcType="REAL" property="specificPrice" />
+        <result column="overcurrent_price" jdbcType="REAL" property="overcurrentPrice" />
+        <result column="cost_nrc" jdbcType="REAL" property="costNrc" />
+        <result column="cost_price" jdbcType="REAL" property="costPrice" />
+        <result column="alarm_max_value" jdbcType="REAL" property="alarmMaxValue" />
+        <result column="alarm_min_value" jdbcType="REAL" property="alarmMinValue" />
+        <result column="alarm_max_value_to_customer" jdbcType="REAL" property="alarmMaxValueToCustomer" />
+        <result column="alarm_min_value_to_customer" jdbcType="REAL" property="alarmMinValueToCustomer" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="parent_id" jdbcType="INTEGER" property="parentId" />
+        <result column="price_terms_id" jdbcType="INTEGER" property="priceTermsId" />
+        <result column="payment_terms_id" jdbcType="INTEGER" property="paymentTermsId" />
+        <result column="create_by_id" jdbcType="INTEGER" property="createById" />
+        <result column="update_by_id" jdbcType="INTEGER" property="updateById" />
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+        <result column="mark" jdbcType="VARCHAR" property="mark" />
+
+        <result column="datacenter_name" jdbcType="VARCHAR" property="datacenterName"/>
+        <result column="datacenter_full_name" jdbcType="VARCHAR" property="datacenterFullName"/>
+        <result column="zone_name" jdbcType="VARCHAR" property="zoneName"/>
+        <result column="device_classify_name" jdbcType="VARCHAR" property="deviceClassifyName"/>
+        <result column="device_type_name" jdbcType="VARCHAR" property="deviceTypeName"/>
+        <result column="device_brand_name" jdbcType="VARCHAR" property="deviceBrandName"/>
+        <result column="device_model_name" jdbcType="VARCHAR" property="deviceModelName"/>
+        <result column="device_model_specification" jdbcType="VARCHAR" property="deviceModelSpecification"/>
+        <result column="datacenter_id" jdbcType="INTEGER" property="datacenterId"/>
+    </resultMap>
+    <resultMap id="cabinetsWithZabbixMonitorResultMap" type="com.xdcplus.model.dto.cabinetel.CabinetelDTO">
+        <id column="id" jdbcType="INTEGER" property="cabinetId"/>
+        <result column="customer_id" jdbcType="INTEGER" property="customerId"/>
+        <result column="charge_type_id" jdbcType="INTEGER" property="chargeTypeId"/>
+        <result column="charge_value" jdbcType="INTEGER" property="chargeValue"/>
+        <result column="price" jdbcType="REAL" property="price" />
+        <result column="specific_price" jdbcType="REAL" property="specificPrice" />
+        <result column="overcurrent_price" jdbcType="REAL" property="overcurrentPrice" />
+        <result column="cost_nrc" jdbcType="REAL" property="costNrc" />
+        <result column="cost_price" jdbcType="REAL" property="costPrice" />
+        <result column="number" jdbcType="VARCHAR" property="cabinetNumber"/>
+        <result column="d_id" jdbcType="INTEGER" property="datacenterId"/>
+        <result column="d_name" jdbcType="VARCHAR" property="datacenterName"/>
+        <result column="z_name" jdbcType="VARCHAR" property="zoneName"/>
+        <result column="mark" jdbcType="VARCHAR" property="mark"/>
+        <result column="alarm_max_value" jdbcType="INTEGER" property="alarmMaxValue"/>
+        <result column="alarm_min_value" jdbcType="INTEGER" property="alarmMinValue"/>
+        <result column="alarm_max_value_to_customer" jdbcType="INTEGER" property="alarmMaxValueToCustomer"/>
+        <result column="alarm_min_value_to_customer" jdbcType="INTEGER" property="alarmMinValueToCustomer"/>
+        <result column="unit" jdbcType="VARCHAR" property="unit"/>
+        <result column="price_terms_id" jdbcType="INTEGER" property="priceTermsId" />
+        <result column="payment_terms_id" jdbcType="INTEGER" property="paymentTermsId" />
+        <result column="update_by_id" jdbcType="INTEGER" property="updateById" />
+        <result column="create_by_id" jdbcType="INTEGER" property="createById" />
+        <result column="power_on_time" jdbcType="DATE" property="powerOnTime" />
+        <result column="power_down_time" jdbcType="DATE" property="powerDownTime" />
+        <result column="charge_date_from" jdbcType="DATE" property="chargeDateFrom" />
+        <result column="charge_date_to" jdbcType="DATE" property="chargeDateTo" />
+        <result column="estimate_charge_date_from" jdbcType="DATE" property="estimateChargeDateFrom"/>
+        <collection ofType="com.xdcplus.model.dto.cabinetel.HistoryDTO" property="historyDTOS">
+            <id column="item_id" jdbcType="INTEGER" property="itemId"/>
+            <result column="item_code" jdbcType="VARCHAR" property="itemCode"/>
+            <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
+            <result column="pdc_number" jdbcType="VARCHAR" property="pdcNumber"/>
+            <result column="circuit" jdbcType="VARCHAR" property="circuit"/>
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, customer_id, final_customer_id, zone_id, number, mark, charge_type_id, estimate_charge_date_from, charge_date_from, charge_date_to, power_on_time, power_down_time, charge_value, price, specific_price, overcurrent_price, price_terms_id, payment_terms_id, cost_nrc, cost_price, device_model_id, serial_number, asset_tag, facility_number, nominal_watts, delivery_date, pdu_type_name, pdu_brand, pdu_power_type_name, pdu_power_number, width, height, depth, plan_device_number, x_axis, y_axis, alarm_max_value, alarm_min_value, alarm_max_value_to_customer, alarm_min_value_to_customer, unit, parent_id, create_by_id, update_by_id, update_time, create_time
+    </sql>
+    <select id="selectByKeyword" parameterType="com.xdcplus.resource.basic.vo.CabinetByKeywordVO"
+            resultMap="keywordResultMap">
+        select DISTINCT
+        ca.*,
+        dc.name as datacenter_name,dc.full_name as datacenter_full_name,
+        z.name as zone_name,cc.name as device_classify_name,ct.name as device_type_name,
+        cb.name as device_brand_name,cm.name as device_model_name,
+        cm.specification as device_model_specification,z.datacenter_id
+        from cabinet ca
+        LEFT JOIN zone z ON ca.zone_id = z.id
+        LEFT JOIN datacenter dc ON z.datacenter_id=dc.id
+        LEFT JOIN monitor_to_cabinet mtc ON ca.id = mtc.cabinet_id
+        LEFT JOIN device_model cm ON ca.device_model_id = cm.id
+        LEFT JOIN device_brand cb ON cm.device_brand_id = cb.id
+        LEFT JOIN device_type ct ON cm.device_type_id = ct.id
+        LEFT JOIN device_classify cc ON ct.device_classify_id = cc.id
+        <where>
+            <if test="keyword!=null">
+                (z.name LIKE #{keyword} OR ca.number LIKE #{keyword}
+                OR ct.name LIKE #{keyword} OR ct.chinese_name LIKE #{keyword}
+                OR ca.nominal_watts LIKE #{keyword}
+                OR ca.delivery_date LIKE binary #{keyword}
+                OR ca.power_on_time LIKE binary #{keyword}
+                OR ca.pdu_brand LIKE #{keyword}
+                OR ca.pdu_power_number LIKE #{keyword}
+                OR ca.width LIKE #{keyword} OR ca.height LIKE #{keyword}
+                OR ca.depth LIKE #{keyword} OR ca.plan_device_number LIKE #{keyword}
+                OR ca.charge_value LIKE #{keyword})
+            </if>
+            <if test="cabinetNumber!=null">
+                AND ca.number LIKE #{cabinetNumber}
+            </if>
+            <if test="zoneId!=null">
+                AND z.id = #{zoneId}
+            </if>
+            <if test="zoneName!=null">
+                AND z.name = #{zoneName}
+            </if>
+            <if test="number!=null">
+                AND ca.number = #{number}
+            </if>
+            <if test="datacenterId!=null">
+                AND dc.id = #{datacenterId}
+            </if>
+            <if test="datacenterName!=null">
+                AND (dc.name = #{datacenterName} or dc.full_name = #{datacenterName})
+            </if>
+            <if test="finalCustomerId!=null">
+                AND ca.final_customer_id = #{finalCustomerId}
+            </if>
+            <if test="customerId!=null">
+                AND ca.customer_id = #{customerId}
+            </if>
+            <if test="customerIds!=null ">
+                AND ca.customer_id in
+                <foreach close=")" collection="customerIds" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="finalCustomerIds!=null ">
+                AND ca.final_customer_id in
+                <foreach close=")" collection="finalCustomerIds" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="monitorId!=null">
+                AND mtc.monitor_id = #{monitorId}
+            </if>
+            <if test="allowDatacenterIds!=null ">
+                AND dc.id in
+                <foreach close=")" collection="allowDatacenterIds" index="index" item="item" open="(" separator=",">
+                    #{item}
+                </foreach>
+            </if>
+            <if test="parentId!=null">
+                AND ca.parent_id = #{parentId}
+            </if>
+            <if test="chargeTypeId!=null">
+                AND ca.charge_type_id = #{chargeTypeId}
+            </if>
+        </where>
+        <choose>
+            <when test="orderByClause != null">
+                order by ${orderByClause}
+            </when>
+            <otherwise>
+                order by ca.id desc
+            </otherwise>
+        </choose>
+        <if test="page != null">
+            LIMIT #{page},#{pageSize}
+        </if>
+    </select>
+    <select id="selectCabinetelDTOs" parameterType="com.xdcplus.model.dto.cabinetel.QueryDTO"
+            resultMap="cabinetsWithZabbixMonitorResultMap">
+        select
+        c.id,c.number,z.name as z_name,d.name as d_name,d.id as d_id,
+        cm.item_id,cm.item_code,cm.item_name,cm.pdc_number,cm.circuit,
+        c.customer_id,c.final_customer_id,c.charge_type_id,c.charge_value,c.price,
+        c.specific_price,c.overcurrent_price,
+        c.cost_nrc,c.cost_price,
+        c.power_on_time,c.power_down_time,c.charge_date_from,c.charge_date_to,c.estimate_charge_date_from,
+        c.alarm_max_value,c.alarm_min_value,c.alarm_max_value_to_customer,
+        c.alarm_min_value_to_customer,c.unit,c.price_terms_id,c.payment_terms_id,
+        c.create_by_id,c.update_by_id,c.mark
+        from cabinet c
+        left join zone z on z.id=c.zone_id
+        left join datacenter d on d.id=z.datacenter_id
+        left join cabinet_monitor cm on cm.cabinet_id=c.id
+        where cm.item_id is not null
+        <if test="datacenterId !=null">
+            and d.id = #{datacenterId}
+        </if>
+        <if test="zoneIds !=null">
+            and z.id in
+            <foreach close=")" collection="zoneIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="zoneId !=null">
+            and z.id =#{zoneId}
+        </if>
+        <if test="cabinetNumber !=null">
+            and c.number like #{cabinetNumber}
+        </if>
+        <if test="customerIds !=null">
+            and c.customer_id in
+            <foreach close=")" collection="customerIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="notInCustomerIds !=null">
+            and c.customer_id not in
+            <foreach close=")" collection="notInCustomerIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="customerId !=null">
+            <choose>
+                <when test="customerId == 0">
+                    and c.customer_id is not null and c.customer_id <![CDATA[ <> ]]> 0
+                </when>
+                <otherwise>
+                    and c.customer_id =#{customerId}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="cabinetIds !=null">
+            and c.id in
+            <foreach close=")" collection="cabinetIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="cabinetId !=null">
+            and c.id =#{cabinetId}
+        </if>
+        <if test="monitorClassify !=null">
+            and cm.classify =#{monitorClassify}
+        </if>
+        <if test="itemName !=null">
+            and cm.item_name like #{itemName}
+        </if>
+        order by z.id,c.number
+    </select>
+    <resultMap id="showResultMap" extends="keywordResultMap"
+               type="com.xdcplus.resource.basic.vo.CabinetByShowVO">
+        <result column="device_classify_id" jdbcType="INTEGER" property="deviceClassifyId"/>
+        <result column="device_brand_id" jdbcType="INTEGER" property="deviceBrandId"/>
+        <result column="device_type_id" jdbcType="INTEGER" property="deviceTypeId"/>
+        <collection ofType="com.xdcplus.resource.basic.vo.CabinetMonitorByKeywordVO"
+                    property="cabinetMonitorVOs">
+            <result column="cmr_id" jdbcType="INTEGER" property="id"/>
+            <result column="circuit" jdbcType="VARCHAR" property="circuit"/>
+            <result column="pdc_number" jdbcType="VARCHAR" property="pdcNumber"/>
+            <result column="oid_name" jdbcType="VARCHAR" property="oidName"/>
+            <result column="oid" jdbcType="VARCHAR" property="oid"/>
+            <result column="item_id" jdbcType="INTEGER" property="itemId"/>
+            <result column="item_name" jdbcType="VARCHAR" property="itemName"/>
+            <result column="cmr_unit" jdbcType="VARCHAR" property="unit"/>
+            <result column="cmr_alarm_max_value" jdbcType="FLOAT" property="alarmMaxValue"/>
+            <result column="cmr_alarm_min_value" jdbcType="FLOAT" property="alarmMinValue"/>
+            <result column="cmr_alarm_max_value_to_customer" jdbcType="FLOAT" property="alarmMaxValueToCustomer"/>
+            <result column="cmr_alarm_min_value_to_customer" jdbcType="FLOAT" property="alarmMinValueToCustomer"/>
+            <result column="panel_code" jdbcType="VARCHAR" property="panelCode"/>
+            <result column="classify" jdbcType="VARCHAR" property="classify"/>
+        </collection>
+    </resultMap>
+    <select id="showCabinet" parameterType="java.lang.Integer" resultMap="showResultMap">
+        select
+        ca.*,
+        dc.name as datacenter_name,dc.full_name as datacenter_full_name,
+        z.name as zone_name,
+        cm.name as device_model_name,cm.specification as device_model_specification,
+        cb.name as device_brand_name,
+        ct.name as device_type_name, cc.name as device_classify_name,
+        cm.device_brand_id,cm.device_type_id,ct.device_classify_id,
+        z.datacenter_id,
+        cmr.id AS cmr_id,cmr.item_name,cmr.oid_name,cmr.oid,cmr.item_id,
+        cmr.alarm_max_value AS cmr_alarm_max_value,cmr.alarm_min_value AS cmr_alarm_min_value,
+        cmr.unit AS cmr_unit,
+        cmr.alarm_max_value_to_customer as cmr_alarm_max_value_to_customer,
+        cmr.alarm_min_value_to_customer as cmr_alarm_min_value_to_customer,cmr.panel_code,
+        cmr.circuit,cmr.pdc_number,cmr.classify
+
+        from cabinet ca
+        LEFT JOIN zone z ON ca.zone_id = z.id
+        LEFT JOIN datacenter dc ON z.datacenter_id=dc.id
+        LEFT JOIN cabinet_monitor cmr ON ca.id = cmr.cabinet_id
+        LEFT JOIN device_model cm ON ca.device_model_id = cm.id
+        LEFT JOIN device_brand cb ON cm.device_brand_id = cb.id
+        LEFT JOIN device_type ct ON cm.device_type_id = ct.id
+        LEFT JOIN device_classify cc ON ct.device_classify_id = cc.id
+        WHERE ca.id=#{id}
+    </select>
+</mapper>

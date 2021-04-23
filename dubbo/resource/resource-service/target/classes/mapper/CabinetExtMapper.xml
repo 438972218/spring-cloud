@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdcplus.resource.basic.mapper.CabinetExtMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xdcplus.resource.basic.entity.CabinetExt">
+        <id column="id" property="id" />
+        <result column="cabinet_id" property="cabinetId" />
+        <result column="customer_id" property="customerId" />
+        <result column="charge_type_id" property="chargeTypeId" />
+        <result column="charge_date_from" property="chargeDateFrom" />
+        <result column="charge_date_to" property="chargeDateTo" />
+        <result column="charge_value" property="chargeValue" />
+        <result column="price" property="price" />
+        <result column="specific_price" property="specificPrice" />
+        <result column="overcurrent_price" property="overcurrentPrice" />
+        <result column="price_terms_id" property="priceTermsId" />
+        <result column="payment_terms_id" property="paymentTermsId" />
+        <result column="cost_nrc" property="costNrc" />
+        <result column="cost_price" property="costPrice" />
+        <result column="remark" property="remark" />
+    </resultMap>
+    <resultMap id="selectCabinetelDTOsByQueryDTOResultMap" type="com.xdcplus.model.dto.cabinetel.CabinetelDTO">
+        <id column="id" jdbcType="INTEGER" property="cabinetId" />
+        <result column="customer_id" jdbcType="INTEGER" property="customerId" />
+        <result column="charge_type_id" jdbcType="INTEGER" property="chargeTypeId" />
+        <result column="charge_value" jdbcType="INTEGER" property="chargeValue" />
+        <result column="charge_date_from" jdbcType="DATE" property="chargeDateFrom" />
+        <result column="charge_date_to" jdbcType="DATE" property="chargeDateTo" />
+        <result column="charge_date_from" jdbcType="DATE" property="powerOnTime" />
+        <result column="price" jdbcType="INTEGER" property="price" />
+        <result column="specific_price" jdbcType="INTEGER" property="specificPrice" />
+        <result column="overcurrent_price" jdbcType="INTEGER" property="overcurrentPrice" />
+        <result column="price_terms_id" jdbcType="INTEGER" property="priceTermsId" />
+        <result column="payment_terms_id" jdbcType="INTEGER" property="paymentTermsId" />
+        <result column="cost_nrc" jdbcType="INTEGER" property="costNrc" />
+        <result column="cost_price" jdbcType="INTEGER" property="costPrice" />
+        <result column="number" jdbcType="VARCHAR" property="cabinetNumber" />
+        <result column="d_id" jdbcType="INTEGER" property="datacenterId" />
+        <result column="d_name" jdbcType="VARCHAR" property="datacenterName" />
+        <result column="z_name" jdbcType="VARCHAR" property="zoneName" />
+        <result column="alarm_max_value" jdbcType="INTEGER" property="alarmMaxValue" />
+        <result column="alarm_min_value" jdbcType="INTEGER" property="alarmMinValue" />
+        <result column="alarm_max_value_to_customer" jdbcType="INTEGER" property="alarmMaxValueToCustomer" />
+        <result column="alarm_min_value_to_customer" jdbcType="INTEGER" property="alarmMinValueToCustomer" />
+        <result column="unit" jdbcType="VARCHAR" property="unit" />
+        <result column="remark" jdbcType="VARCHAR" property="remark" />
+        <result column="power_on_time" jdbcType="DATE" property="powerOnTime" />
+        <result column="power_down_time" jdbcType="DATE" property="powerDownTime" />
+        <result column="charge_date_from" jdbcType="DATE" property="chargeDateFrom" />
+        <result column="charge_date_to" jdbcType="DATE" property="chargeDateTo" />
+        <result column="estimate_charge_date_from" jdbcType="DATE" property="estimateChargeDateFrom"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, cabinet_id, customer_id, charge_type_id, charge_date_from, charge_date_to, charge_value, price, specific_price, overcurrent_price, price_terms_id, payment_terms_id, cost_nrc, cost_price, remark
+    </sql>
+    <select id="selectCabinetelDTOsByQueryDTO" parameterType="com.xdcplus.model.dto.cabinetel.QueryDTO" resultMap="selectCabinetelDTOsByQueryDTOResultMap">
+        select
+        c.id,c.number,z.name as z_name,d.name as d_name,d.id as d_id,
+        ce.customer_id,ce.charge_type_id,ce.charge_value,
+        ce.price,ce.specific_price,ce.overcurrent_price,ce.remark,
+        ce.charge_date_from,ce.charge_date_to,
+        ce.price_terms_id,ce.payment_terms_id,ce.cost_nrc,ce.cost_price,
+        c.alarm_max_value,c.alarm_min_value,c.alarm_max_value_to_customer,
+        c.alarm_min_value_to_customer,c.unit,
+        c.power_on_time,c.power_down_time,c.charge_date_from,c.charge_date_to,c.estimate_charge_date_from
+        from cabinet_ext ce
+        left join cabinet c on ce.cabinet_id=c.id
+        left join zone z on z.id=c.zone_id
+        left join datacenter d on d.id=z.datacenter_id
+        where 0=0
+        and c.id in (SELECT cm.cabinet_id FROM cabinet_monitor cm where cm.item_id is not null)
+        <if test="datacenterId !=null">
+            and d.id = #{datacenterId}
+        </if>
+        <if test="zoneIds !=null">
+            and z.id in
+            <foreach close=")" collection="zoneIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="zoneId !=null">
+            and z.id =#{zoneId}
+        </if>
+        <if test="cabinetNumber !=null">
+            and c.number like #{cabinetNumber}
+        </if>
+        <if test="customerIds !=null">
+            and ce.customer_id in
+            <foreach close=")" collection="customerIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="notInCustomerIds !=null">
+            and ce.customer_id not in
+            <foreach close=")" collection="notInCustomerIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="customerId !=null">
+            <choose>
+                <when test="customerId == 0">
+                    and ce.customer_id is not null
+                </when>
+                <otherwise>
+                    and ce.customer_id =#{customerId}
+                </otherwise>
+            </choose>
+        </if>
+        <if test="cabinetIds !=null">
+            and c.id in
+            <foreach close=")" collection="cabinetIds" index="index" item="item" open="(" separator=",">
+                #{item}
+            </foreach>
+        </if>
+        <if test="cabinetId !=null">
+            and c.id =#{cabinetId}
+        </if>
+        order by z.id,c.number
+    </select>
+</mapper>

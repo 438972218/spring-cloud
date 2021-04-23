@@ -1,0 +1,22 @@
+#server:
+#  port: 8094
+
+spring:
+  application:
+    name: customerorder-consumer
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 10.20.1.179:8848
+        file-extension: yml
+        refresh: true
+        shared-dataids: application-spring-cloud.yml,
+                        application-dubbo.yml
+        namespace: 83625376-d520-4e08-9c52-35a34cbb63fc
+
+dubbo:
+  scan:
+    base-packages: com.xdcplus.customerorder.basic.controller
+  cloud:
+    subscribed-services: "customerorder-service"

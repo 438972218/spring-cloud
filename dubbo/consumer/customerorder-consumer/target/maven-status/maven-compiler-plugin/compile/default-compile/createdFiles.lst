@@ -1,0 +1,3 @@
+com\xdcplus\customerorder\common\config\Swagger2.class
+com\xdcplus\customerorder\basic\controller\CustomerController.class
+com\xdcplus\customerorder\ServiceApplication.class

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="customerorder-service" />
+        <module name="spring-boot-admin" />
+        <module name="customerorder-gateway" />
+        <module name="customerorder-feign" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="customerorder" target="1.8" />
+      <module name="customerorder-feign" target="1.8" />
+      <module name="customerorder-gateway" target="1.8" />
+      <module name="customerorder-service" target="1.8" />
+      <module name="spring-boot-admin" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="customerorder-feign" options="-parameters" />
+      <module name="customerorder-gateway" options="-parameters" />
+      <module name="customerorder-service" options="-parameters" />
+      <module name="spring-boot-admin" options="-parameters" />
+    </option>
+  </component>
+</project>

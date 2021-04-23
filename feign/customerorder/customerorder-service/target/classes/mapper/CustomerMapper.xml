@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xdcplus.customerorder.mapper.CustomerMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.xdcplus.customerorder.entity.Customer">
+        <id column="id" property="id" />
+        <result column="code" property="code" />
+        <result column="name" property="name" />
+        <result column="full_name" property="fullName" />
+        <result column="status_name" property="statusName" />
+        <result column="level" property="level" />
+        <result column="type" property="type" />
+        <result column="trade" property="trade" />
+        <result column="region" property="region" />
+        <result column="city" property="city" />
+        <result column="postal_code" property="postalCode" />
+        <result column="fax" property="fax" />
+        <result column="source_from" property="sourceFrom" />
+        <result column="address" property="address" />
+        <result column="office_phone" property="officePhone" />
+        <result column="official_site" property="officialSite" />
+        <result column="bill_to" property="billTo" />
+        <result column="ship_to" property="shipTo" />
+        <result column="remark" property="remark" />
+        <result column="create_by_id" property="createById" />
+        <result column="create_time" property="createTime" />
+        <result column="sales_id" property="salesId" />
+        <result column="type_id" property="typeId" />
+        <result column="trade_id" property="tradeId" />
+        <result column="region_id" property="regionId" />
+        <result column="city_id" property="cityId" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, code, name, full_name, status_name, level, type, trade, region, city, postal_code, fax, source_from, address, office_phone, official_site, bill_to, ship_to, remark, create_by_id, create_time, sales_id, type_id, trade_id, region_id, city_id
+    </sql>
+
+</mapper>

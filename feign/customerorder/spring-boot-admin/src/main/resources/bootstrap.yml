@@ -1,0 +1,30 @@
+server:
+  port: 8071
+
+spring:
+  application:
+    name: spring-cloud-alibaba-admin-provider
+
+  cloud:
+    nacos:
+      # 配置中心
+      config:
+        server-addr: 10.20.7.145:8848
+        file-extension: yml
+        refresh: true
+        shared-dataids: spring-datasource.yml,discovery.yml
+        namespace: cb4a94f3-5601-4e0a-90fd-9e7a76119a13
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+
+# 日志
+logging:
+  file: /application/applogs/admin.log
